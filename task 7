@@ -1,0 +1,42 @@
+import unittest
+import pytest
+from assertpy import assert_that
+
+def factor(n): # простейшая функция для теста
+    if n == 0:
+        return 1
+    return n * factor(n - 1)
+
+# Тесты с использованием unittest
+class TestFactor(unittest.TestCase):
+    def test_factor_4(self):
+        self.assertEqual(factor(4), 24) #проверка на корректность результата
+
+    def test_factor_5(self):
+        self.assertEqual(factor(5), 120) #проверка на корректность результата
+
+    def test_factor_type(self):
+        self.assertIsInstance(factor(5), int) #проверка на корректность типа
+
+# Тесты с использованием pytest
+def test_factor_4_pytest(): #проверка на корректность результата
+    assert factor(4) == 24
+
+def test_factor_5_pytest():
+    assert factor(5) == 120 #проверка на корректность результата
+
+def test_factor_type_pytest():
+    assert isinstance(factor(5), int) #проверка на корректность типа
+
+# Тесты с использованием assertpy
+def test_factor_4_assertpy():
+    assert_that(factor(4)).is_equal_to(24) #проверка на корректность результата
+
+def test_factor_5_assertpy():
+    assert_that(factor(5)).is_equal_to(120) #проверка на корректность результата
+
+def test_factor_type_assertpy():
+    assert_that(factor(5)).is_instance_of(int) #проверка на корректность типа
+
+if __name__ == "__main__":
+    unittest.main()
